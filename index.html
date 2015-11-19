@@ -71,37 +71,57 @@
           </figure>
           <figure>
             <img src="images/wires.JPG" alt="5 wires" onmouseover="this.width='1000'" onmouseout="this.width='500'">
-            <figcaption style="display:inline; color:grey">The 5 wires coming out of the front panel connector. Notice the green wire with a screw on connector, thats defenitely a fround wire, for ESD protection.</figcaption>
+            <figcaption style="display:inline; color:grey">The 5 wires coming out of the front panel connector. Notice the green wire with a screw on connector, thats definitely the ground wire, for ESD protection.</figcaption>
           </figure>
 
-          I had to know which wire is which. Tried googling for some time, but I didn't find the answer I was looking for, seems that this model has many revisions. Now I need to find out what each of the wire is for. But I got some other information retarding
-          the sensor used, very likely to be a K-type thermocouple.
+          I had to know which wire is which. 'Googled' for some time, but couldn't find the answer I was looking for, seems that this model has many revisions. Now I need to find out what each of the wire is for. But I got some other information retarding the sensor
+          used, very likely to be a K-type thermocouple.
         </p>
         <p>
-          5 wires, so the guess would be, 2 for heater, 2 for sensor, and 1 for ESD(grounding). On inspecting the connections, I find that the green were is connected to the earth wire, so that wire clearly is the ESD. One down 5 more to go.
+          5 wires, so the guess would be, 2 for heater, 2 for sensor, and 1 for ESD(grounding). On inspecting the connections, I find that the green were is connected to the earth wire of the mains via the body of the transformer, so that wire clearly is the ESD.
+          One down 5 more to go.
         </p>
         <p>
           Then I inspected the circuit board and followed the traces hoping identify the wires.
-          <!-- TODO: image of the logic board -->
-          See that big component with a heat sink? It's Fet or a power transistor (very likely a MOSFET) which controls the power flow to the heater. The control circuit/micrcontroller will be controlling this component via a PWM (Pulse Width Modulation) signals
-          to the heater power. So?, follow the traces from this component, I see two thick traces from the FET, this wire must be going to the heater. Following the trace further, I found that one these traces goes to the transformer secondary and the
-          other goes to one of the RED wires from the front-panel. So the other RED wire must be the going to the second wire of the transformer secondary, right? Yes it does and the circuit is complete. So the RED wires are going to the heater. The clues
-          were, thick traces to carry high current (about 2A), direct connection to the 24v AC output of the transformer (no digital component/sensor will be powered by the unregulated AC supply).
-          <br> Lets make sure once, the pencil is rated for 50W at 24v, means it draws about 2A at 24v. So the heating element must have a resistance lower than 12 ohms, lets see.
-          <!-- TODO: resistance value of the heating element apply 10v and measure
-            the current to calculate the resisteance-->
+          <figure>
+            <img src="images/logic%20top%20mine.JPG" alt="logic top mine" onmouseover="this.width='1000'" onmouseout="this.width='500'">
+            <figcaption style="display:inline; color:grey">The top side of the logic board from our station.</figcaption>
+          </figure>
+          <figure>
+            <img src="images/logic%20bot%20mine.JPG" alt="logic bot mine" onmouseover="this.width='1000'" onmouseout="this.width='500'">
+            <figcaption style="display:inline; color:grey">The bottom.</figcaption>
+          </figure>
+          <br> I was so excited about the project, so much that I forgot to take a any pictures before removing the pot and the wires from the front-panel. You can also see that I broke some of the traces for testing purposes. I had completely that I was
+          supposed to document this project. So I'm posting two pictures from <a href="http://forum.allaboutcircuits.com/threads/weller-wes51-failed.54325/"> this </a> page for reference. This guy took good quality pictures, thanks you <a href="http://forum.allaboutcircuits.com/members/triden.126050/"> Triden</a>.
+          <br>
+          You can see that the two thick traces from the pin one and two of component with the heat sink. I will be mentioning about these soon.
+          <br>
+          <figure>
+            <img src="images/logic%20top%20not.jpg" alt="logic top not mine" onmouseover="this.width='1000'" onmouseout="this.width='500'">
+            <figcaption style="display:inline; color:grey">Top side of Triden's board.</figcaption>
+          </figure>
+          <figure>
+            <img src="images/logic%20bot%20not.jpg" alt="logic bot not mine" onmouseover="this.width='1000'" onmouseout="this.width='500'">
+            <figcaption style="display:inline; color:grey">And the bottom.</figcaption>
+          </figure>
+          <br> See that big component with a heat sink? It's FET or a power transistor (very likely a MOSFET) which controls the power flow to the heater. Component is marked BTA12, and I found this <a href="https://www.onsemi.com/pub/Collateral/BTA12-600BW3-D.PDF"> data-sheet </a>.
+          I was wrong! it's not a FET, not a transistor; It is a Triac, a Silicon Bidirectional Thyristor. The control circuit/micrcontroller will be controlling this component via a PWM (Pulse Width Modulation) signals to the heater power. So?, follow
+          the traces from the Triac, see the two thick traces from the Triac?, from pin 1 and pin 2?, these wires must be going to the heater. Following the trace further, I found that one these traces goes to the transformer secondary via a shunt resistor. And the other goes to one of the RED wires
+          from the front-panel. So the other RED wire must be the going to the second wire of the transformer secondary, right? Yes it does and the circuit is complete. So the RED wires are going to the heater. The clues were, thick traces to carry high
+          current (about 2A), direct connection to the 24v AC output of the transformer (no digital component/sensor will be powered by the unregulated AC supply).
+          <br> Lets be sure about it, the pencil is rated for 50W at 24v, means it draws about 2A at 24v. So the heating element must have a resistance lower than 12 ohms, lets see.
+          <br>
+          I set 10 V at a maximum current limit of 2A with the power supply and connected the supply to the RED wires. The pencil drew only 0.94 A, which means the resistance is about 10/0.94 = 10.6 ohm. Just like we expected.
         </p>
         <p>
           With just two wires remaining it is obvious that these are going to be the sensor leads. Now what type of a sensor is this?
-          <br> If the sensor is resistive (the resistance changes with temperature), PTC, NTC, PT100 etc it must have a high resistance, ranging from 50ohm
-          <!-- TODO: for what  -->to 10s of Kohms
-          <!-- TODO: for what? -->. And if the sensor is a thermocouple (produces a potential difference proportional to the temperature), it must have a very low resistance. When measured I found a very low resistance, almost short circuit so it must be a thermocouple and my
-          'googling' also supports this guess.
+          <br> If the sensor is resistive (the resistance changes with temperature), PTC, NTC, PT100 etc it must have a high resistance, ranging from 50ohm for an RTD to 10s of Kohms for a thermistor. . And if the sensor is a thermocouple (produces a potential
+          difference proportional to the temperature), it must have a very low resistance. When measured I found a very low resistance, almost short circuit so it must be a thermocouple and my 'googling' also supports this guess.
         </p>
         <p>
-          Lets check the thermocouple, the wikipedia and NTES
-          <!-- TODO: NTES? and the links to NTES AND wikipedia-->data tells that about 4 mV potential difference can be expected across the terminals at about (100 + room temperaure) degree Celsius. (100 + room temperaure) because the thermocouple can only measure the temperature relatively. It is made of
-          a junction between two metals and the potential drop produced by the junction depends on the temperature difference between the metals. In case of the soldering iron one of the metal is at the tip temperature and the other will be at room temperature.
+          Lets check the thermocouple, the information from <a href="https://en.wikipedia.org/wiki/Thermocouple">Wikipedia</a> and <a href="http://srdata.nist.gov/its90/download/type_k.tab"> NIST</a> (Nationla Institute of Standards and Technology) data
+          tells that about 4 mV potential difference can be expected across the terminals at about (100 + room temperaure) degree Celsius. (100 + room temperaure) because the thermocouple can only measure the temperature relatively. It is made of a junction
+          between two metals and the potential drop produced by the junction depends on the temperature difference between the metals. In case of the soldering iron one of the metal is at the tip temperature and the other will be at room temperature.
           So the tip temperature is measured relative to the room temperature.
           <br> This tells us that even at the maximum temperature of the iron, the potential difference by the thermocouple will be under 20 mV.
         </p>
@@ -111,8 +131,23 @@
         <p>
           Okay, I don't have the time to make the control unit now, I need to make the FabISP.(don't runaway I'm going to make it, keep reading) So I set the power supply to a maximum of 24v and connected to the heating element (RED wires). The thermocouple is
           connected to the oscilloscope to monitor the 'temperature' (actually the potential differance). The DSO is set to read the average DC voltage across the thermocouple.
-          <br>This one is a really expensive soldering station, but it will do for the day.
-          <!-- TODO: the photo of the setup -->
+          <br>This one is a really expensive soldering station, but it will do for the day. Okay, now, picture time....
+          <figure>
+            <img src="images/sg-1-1.JPG" alt="setup" onmouseover="this.width='1000'" onmouseout="this.width='500'">
+            <figcaption style="display:inline; color:grey">The makeshift soldering station.</figcaption>
+          </figure>
+            <figure>
+            <img src="images/sg-1-2.JPG" alt="wiring" onmouseover="this.width='1000'" onmouseout="this.width='500'">
+            <figcaption style="display:inline; color:grey">The wiring: RED wires are connected to the power-supply and the yellow and orange wires to the DSO.</figcaption>
+          </figure>
+            <figure>
+            <img src="images/sg-1-3.JPG" alt="me and station" onmouseover="this.width='1000'" onmouseout="this.width='500'">
+            <figcaption style="display:inline; color:grey">Thats me witht he setup.</figcaption>
+          </figure>
+            <figure>
+            <img src="images/sg-1-4.JPG" alt="me yadu and station" onmouseover="this.width='1000'" onmouseout="this.width='500'">
+            <figcaption style="display:inline; color:grey">Selfie by Yadu, while I'm using the setup.</figcaption>
+          </figure>
         </p>
         <p>
           To make use of this setup we need to hold the pencil at a safe temperature and we don't know what value of the DSO reading corresponds to that temperature. The fix? I connected the pencil to the working controller and let it heat up to the set value,
