@@ -30,9 +30,9 @@
     <div class="container">
       <section id="main_content">
         <p>
-          So, I made an entire soldering station myself! really?. No, I just made the controller, the iron has to be obtained separately. Though this controller is made to be used with Weller
-          <!-- TODO: name of the pencil -->, the idea and the circuit can be used for any pencil with minor modification in the circuit and firmware, be it Weller, Hakko, Goot etc.
-And most importantly, I was not alone, I had help from my friend and fellow trainee (at Pre Fab Academy), Yadu, he did most the micro-controller interfacing and coding, like LCD interfacing.
+          So, I made an entire soldering station myself! really?. No, I just made the controller, the iron has to be obtained separately. Though this controller is made to be used with Weller PES51 pencil , the idea and the circuit can be used for any pencil with
+          minor modification in the circuit and firmware, be it Weller, Hakko, Goot etc. And most importantly, I was not alone, I had help from my friend and fellow trainee (at Pre Fab Academy), Yadu, he did most the micro-controller interfacing and coding,
+          like LCD interfacing. Though I started it as a solo project, later we decided to to do it together.
           <br>Okay now let's read about the development.
         </p>
 
@@ -42,14 +42,20 @@ And most importantly, I was not alone, I had help from my friend and fellow trai
           First of all thanks to whoever selected and sent the the equipments to the FabLab here. He/she was the reason for this project, why? In India we have 230v and almost all the equipments here works on 110v. Most of these machine (including a 2KW electric
           furnace) require a transformer to convert the 230v to 100v. Thogh the there is a 'big' label pasted on almost all equipments saying that it need 110v AC, some 'illiterate' 'idiot' will come and plug something to the 230v supply, and BOOOM, he
           just contributed something to this pile of crap.
-          <!-- TODO: image of the fried items -->
+          <figure>
+            <img src="images/scrap.JPG" alt="fried" onmouseover="this.width='1000'" onmouseout="this.width='500'">
+            <figcaption style="display:inline; color:grey">Most of the these items are a result of carelessness</figcaption>
+          </figure>
         </p>
         <p>
           So one day in the Fab Academy we had to make the <a href="http://fab.cba.mit.edu/content/projects/fabisp/"> FabISP </a> and one of the two soldering station is not working. My friend Yadu told me that he saw someone plugging it into the 230v
           wall socket. So we were almost sure that it got fried, so me, Yadu and our trainer Mr Luciano tried opened the controller unit expecting a blown fuse. To our surprise this $100 equipment didn't have fuse inside. On inspecting further we found
           that the transformer primary winding of the transformer and the voltage regulator inside the circuit board is fried. The micro-controller was not getting any power even if we supply 24v to the board directly, using a lab power supply.
           <br>
-          <!-- TODO: images of the damaged soldering station -->
+          <figure>
+            <img src="images/inside-out.JPG" alt="disassembled" onmouseover="this.width='1000'" onmouseout="this.width='500'">
+            <figcaption style="display:inline; color:grey">Inside-out: The disassembled station. This image is taken long after we started the project so all the wires are disconnected from the board.</figcaption>
+          </figure>
           Now we are left with only one soldering station, I am not waiting for anyone and they are slow. So I decided to use the lab power supply to power the pencil directly, so that I can just finish soldering my circuit and I don't have to wait for anyone.
           That was the motivation, I immediately remembered Mr Luciano talking about the project we were supposed to do as a part of the academy. I just got mine.
         </p>
@@ -58,8 +64,16 @@ And most importantly, I was not alone, I had help from my friend and fellow trai
 
         <p>
           The pencil had 5 wires coming out of it, I knew that the pencil had a heating element, a temperature sensor and the pencil's rubber grip is grounded for ESD protection.
-          <!-- TODO: the pictures of pencil connectors both male and female -->
-          <!-- TODO: image of wires coming from the front panel -->
+
+          <figure>
+            <img src="images/conn.JPG" alt="connector" onmouseover="this.width='1000'" onmouseout="this.width='500'">
+            <figcaption style="display:inline; color:grey">The 5 pin connector.</figcaption>
+          </figure>
+          <figure>
+            <img src="images/wires.JPG" alt="5 wires" onmouseover="this.width='1000'" onmouseout="this.width='500'">
+            <figcaption style="display:inline; color:grey">The 5 wires coming out of the front panel connector. Notice the green wire with a screw on connector, thats defenitely a fround wire, for ESD protection.</figcaption>
+          </figure>
+
           I had to know which wire is which. Tried googling for some time, but I didn't find the answer I was looking for, seems that this model has many revisions. Now I need to find out what each of the wire is for. But I got some other information retarding
           the sensor used, very likely to be a K-type thermocouple.
         </p>
@@ -125,31 +139,34 @@ And most importantly, I was not alone, I had help from my friend and fellow trai
         <h3>Stage 3: Op-Amp 'onboard' </h3>
 
         <p>
-          Its time to take the project to the next level, time to make a proper PCB for the amplifier. I did a lot of research and came across an application note from Microchip. <!-- TODO: the link to the microchip app note -->
-          The app-note describes a differential amplifier using two op-amps to amplify the signal from a thermocouple to 0-5 V range. So I used this design as a reference for my design.
-          The board I designed has an amplifier setup described in the app-note, another NTC <!-- TODO: NTC? --> based temperature sensor for measuring the absolute room temperature and the MOSFET.
-          (16A, 50V, 60W continues, logic level MOSFET). All five wires from the pencil goes to this board. The board has two outputs for the ADC, basically the absolute and tip temperatures. The board also requires two levels of voltage,
-          24v, 2A supply for the heater and 5v for everything else. I also made a large copper pad which act as heat sink for the MOSFET. The design uses a double sided PCB and the bottom layer is used only as a ground plane.
+          Its time to take the project to the next level, time to make a proper PCB for the amplifier. I did a lot of research and came across an application note from Microchip.
+          <!-- TODO: the link to the microchip app note -->
+          The app-note describes a differential amplifier using two op-amps to amplify the signal from a thermocouple to 0-5 V range. So I used this design as a reference for my design. The board I designed has an amplifier setup described in the app-note, another
+          NTC
+          <!-- TODO: NTC? -->based temperature sensor for measuring the absolute room temperature and the MOSFET. (16A, 50V, 60W continues, logic level MOSFET). All five wires from the pencil goes to this board. The board has two outputs for the ADC, basically the absolute
+          and tip temperatures. The board also requires two levels of voltage, 24v, 2A supply for the heater and 5v for everything else. I also made a large copper pad which act as heat sink for the MOSFET. The design uses a double sided PCB and the bottom
+          layer is used only as a ground plane.
           <!-- TODO: images of the board populated and unpopulated -->
           <!-- TODO: eagle files -->
           <!-- TODO: png files of the layers-->
           <!-- TODO: videos of the design phase -->
         </p>
 
-<p>
-  During this time my friend Yadu, was experimenting with interfacing the LCD to the FabDuino <!-- TODO: link --> he made (I too made a similar board, not fabduino, will talk about it later). He had some troubles prototyping the section; you can see the pictures in the next section and you will know what I'm talking about.
-  The FabLab (or any lab for that matters) here needs some basic stuff in their inventory, most importantly jumper wires, a lot of them, and all types(M-M, M-F, F-F).
-  <br>So it's time to merge our projects.
-</p>
+        <p>
+          During this time my friend Yadu, was experimenting with interfacing the LCD to the FabDuino
+          <!-- TODO: link -->he made (I too made a similar board, not fabduino, will talk about it later). He had some troubles prototyping the section; you can see the pictures in the next section and you will know what I'm talking about. The FabLab (or any lab for that
+          matters) here needs some basic stuff in their inventory, most importantly jumper wires, a lot of them, and all types(M-M, M-F, F-F).
+          <br>So it's time to merge our projects.
+        </p>
 
-<h3>Stage 4: Putting the pieces together</h3>
+        <h3>Stage 4: Putting the pieces together</h3>
 
-<p>
-  Lets give our project a display and a 'brain'. Yadu had the LCD interfaced with the FabDuino on a breadboard. We connected the amplifier section to the micr-controller and tried to
-  read the temperature. We got the ADC values displaying, that was easier done than said. But converting the ADC values to the temperature was not easy.
-  We had to calibrate, for that we needed some source of known temperature or a thermometer. We had none. So I came up with this crazy setup to get at-least one calibration point, the boiling point of water.
-  <!-- TODO: pics of pencil in water -->
-</p>
+        <p>
+          Lets give our project a display and a 'brain'. Yadu had the LCD interfaced with the FabDuino on a breadboard. We connected the amplifier section to the micr-controller and tried to read the temperature. We got the ADC values displaying, that was easier
+          done than said. But converting the ADC values to the temperature was not easy. We had to calibrate, for that we needed some source of known temperature or a thermometer. We had none. So I came up with this crazy setup to get at-least one calibration
+          point, the boiling point of water.
+          <!-- TODO: pics of pencil in water -->
+        </p>
 
 
 
