@@ -93,8 +93,7 @@
           </figure>
           <br> I was so excited about the project, so much that I forgot to take a any pictures before removing the pot and the wires from the front-panel. You can also see that I broke some of the traces for testing purposes. I had completely that I was
           supposed to document this project. So I'm posting two pictures from <a href="http://forum.allaboutcircuits.com/threads/weller-wes51-failed.54325/"> this </a> page for reference. This guy took good quality pictures, thanks you <a href="http://forum.allaboutcircuits.com/members/triden.126050/"> Triden</a>.
-          <br>
-          You can see that the two thick traces from the pin one and two of component with the heat sink. I will be mentioning about these soon.
+          <br> You can see that the two thick traces from the pin one and two of component with the heat sink. I will be mentioning about these soon.
           <br>
           <figure>
             <img src="images/logic%20top%20not.jpg" alt="logic top not mine" onmouseover="this.width='1000'" onmouseout="this.width='500'">
@@ -106,12 +105,11 @@
           </figure>
           <br> See that big component with a heat sink? It's FET or a power transistor (very likely a MOSFET) which controls the power flow to the heater. Component is marked BTA12, and I found this <a href="https://www.onsemi.com/pub/Collateral/BTA12-600BW3-D.PDF"> data-sheet </a>.
           I was wrong! it's not a FET, not a transistor; It is a Triac, a Silicon Bidirectional Thyristor. The control circuit/micrcontroller will be controlling this component via a PWM (Pulse Width Modulation) signals to the heater power. So?, follow
-          the traces from the Triac, see the two thick traces from the Triac?, from pin 1 and pin 2?, these wires must be going to the heater. Following the trace further, I found that one these traces goes to the transformer secondary via a shunt resistor. And the other goes to one of the RED wires
-          from the front-panel. So the other RED wire must be the going to the second wire of the transformer secondary, right? Yes it does and the circuit is complete. So the RED wires are going to the heater. The clues were, thick traces to carry high
-          current (about 2A), direct connection to the 24v AC output of the transformer (no digital component/sensor will be powered by the unregulated AC supply).
+          the traces from the Triac, see the two thick traces from the Triac?, from pin 1 and pin 2?, these wires must be going to the heater. Following the trace further, I found that one these traces goes to the transformer secondary via a shunt resistor.
+          And the other goes to one of the RED wires from the front-panel. So the other RED wire must be the going to the second wire of the transformer secondary, right? Yes it does and the circuit is complete. So the RED wires are going to the heater.
+          The clues were, thick traces to carry high current (about 2A), direct connection to the 24v AC output of the transformer (no digital component/sensor will be powered by the unregulated AC supply).
           <br> Lets be sure about it, the pencil is rated for 50W at 24v, means it draws about 2A at 24v. So the heating element must have a resistance lower than 12 ohms, lets see.
-          <br>
-          I set 10 V at a maximum current limit of 2A with the power supply and connected the supply to the RED wires. The pencil drew only 0.94 A, which means the resistance is about 10/0.94 = 10.6 ohm. Just like we expected.
+          <br> I set 10 V at a maximum current limit of 2A with the power supply and connected the supply to the RED wires. The pencil drew only 0.94 A, which means the resistance is about 10/0.94 = 10.6 ohm. Just like we expected.
         </p>
         <p>
           With just two wires remaining it is obvious that these are going to be the sensor leads. Now what type of a sensor is this?
@@ -136,15 +134,15 @@
             <img src="images/sg-1-1.JPG" alt="setup" onmouseover="this.width='1000'" onmouseout="this.width='500'">
             <figcaption style="display:inline; color:grey">The makeshift soldering station.</figcaption>
           </figure>
-            <figure>
+          <figure>
             <img src="images/sg-1-2.JPG" alt="wiring" onmouseover="this.width='1000'" onmouseout="this.width='500'">
             <figcaption style="display:inline; color:grey">The wiring: RED wires are connected to the power-supply and the yellow and orange wires to the DSO.</figcaption>
           </figure>
-            <figure>
+          <figure>
             <img src="images/sg-1-3.JPG" alt="me and station" onmouseover="this.width='1000'" onmouseout="this.width='500'">
-            <figcaption style="display:inline; color:grey">Thats me witht he setup.</figcaption>
+            <figcaption style="display:inline; color:grey">Thats me with he setup.</figcaption>
           </figure>
-            <figure>
+          <figure>
             <img src="images/sg-1-4.JPG" alt="me yadu and station" onmouseover="this.width='1000'" onmouseout="this.width='500'">
             <figcaption style="display:inline; color:grey">Selfie by Yadu, while I'm using the setup.</figcaption>
           </figure>
@@ -153,7 +151,6 @@
           To make use of this setup we need to hold the pencil at a safe temperature and we don't know what value of the DSO reading corresponds to that temperature. The fix? I connected the pencil to the working controller and let it heat up to the set value,
           disconnect and immediately connect to the socket of our make-shift soldering station, whatever the DSO displays corresponds to the temperature we need the pencil to be at. Tweaking the current limit dial in the power supply, I found the current
           required to keep the pencil at this temperature, 0.9A to 1.0A.
-          <!-- TODO: the image of this setup and me with the iron -->
           <br> The setup is working and I could solder my FabISP. I also used this setup to de-solder the board later, and use the components to make another board, <a href="http://fab.cba.mit.edu/content/projects/fabispkey/">FabISP Key</a>. But the signal
           is too weak compared to the noise. I have to amplify the signal.
         </p>
@@ -165,20 +162,21 @@
           ADC. This process obviously requires an amplifier, so time to make one. But one problem, the components in the FabLab are only available SMT packages. So prototyping is going to be challenging.
         </p>
         <p>
-          I made a simple non-inverting amplifier using the
-          <!-- TODO: name of the op-amp -->, few filter capacitors and the potentiometer from the original Weller logic board. And this little creature was born.
-          <!-- TODO: schematic -->
+          I made a simple non-inverting amplifier using the op-amp AD-8615, few filter capacitors and the potentiometer from the original Weller logic board. And this little creature was born.
+          <figure>
+            <img src="images/sg-2-schem.JPG" alt="first schematic" onmouseover="this.width='1000'" onmouseout="this.width='500'">
+            <figcaption style="display:inline; color:grey">The schematic of my first om-amp prototype along with some of my notes.</figcaption>
+          </figure>
           <!-- TODO: pics of the op-amp -->
         </p>
 
         <h3>Stage 3: Op-Amp 'onboard' </h3>
 
         <p>
-          Its time to take the project to the next level, time to make a proper PCB for the amplifier. I did a lot of research and came across an application note from Microchip.
-          <!-- TODO: the link to the microchip app note -->
-          The app-note describes a differential amplifier using two op-amps to amplify the signal from a thermocouple to 0-5 V range. So I used this design as a reference for my design. The board I designed has an amplifier setup described in the app-note, another
-          NTC
-          <!-- TODO: NTC? -->based temperature sensor for measuring the absolute room temperature and the MOSFET. (16A, 50V, 60W continues, logic level MOSFET). All five wires from the pencil goes to this board. The board has two outputs for the ADC, basically the absolute
+          Its time to take the project to the next level, time to make a proper PCB for the amplifier. I did a lot of research and came across an application note from Microchip, link <a href="files/00844a.pdf">here</a> and <a href="ww1.microchip.com/downloads/en/AppNotes/00844a.pdf"> here</a>.
+          The app-note describes a differential amplifier using two op-amps to amplify the signal from a thermocouple to 0-5 V range. So I used this design as a reference for my design. The board I designed has an amplifier setup described in the app-note,
+          a 10K NTC temperature sensor for measuring the absolute room temperature and the MOSFET, <a href="https://www.fairchildsemi.com/datasheets/RF/RFD16N05LSM.pdf">RFD16N05L </a> (16A, 50V, 60W continues, logic level N-channel-MOSFET). All five wires from the pencil goes
+          to this board. The board has two outputs for the ADC, basically the absolute
           and tip temperatures. The board also requires two levels of voltage, 24v, 2A supply for the heater and 5v for everything else. I also made a large copper pad which act as heat sink for the MOSFET. The design uses a double sided PCB and the bottom
           layer is used only as a ground plane.
           <!-- TODO: images of the board populated and unpopulated -->
