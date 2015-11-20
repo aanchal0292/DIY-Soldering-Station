@@ -120,7 +120,7 @@
         </p>
         <p>
           Lets check the thermocouple, the information from <a href="https://en.wikipedia.org/wiki/Thermocouple">Wikipedia</a> and <a href="http://srdata.nist.gov/its90/download/type_k.tab"> NIST</a> (Nationla Institute of Standards and Technology) data
-          tells that about 4 mV potential difference can be expected across the terminals at about (100 + room temperaure) degree Celsius. (100 + room temperaure) because the thermocouple can only measure the temperature relatively. It is made of a junction
+          tells that about 4 mV potential difference can be expected across the terminals at about (100&#8451; + room temperaure). (100&#8451; + room temperaure) because the thermocouple can only measure the temperature relatively. It is made of a junction
           between two metals and the potential drop produced by the junction depends on the temperature difference between the metals. In case of the soldering iron one of the metal is at the tip temperature and the other will be at room temperature.
           So the tip temperature is measured relative to the room temperature.
           <br> This tells us that even at the maximum temperature of the iron, the potential difference by the thermocouple will be under 20 mV.
@@ -224,12 +224,18 @@
           <br>
           <br> Few more pictures and videos.
           <br> An interesting animation of the last stages of the design, actually the routing.
-          <!-- TODO: add design video here -->
+
+          <video width="520" controls>
+            <source src="images/design.mp4" type="video/mp4"> Your browser does not support the video tag.
+          </video>
+
           <figure>
             <img src="images/failed.JPG" alt="failed board" onmouseover="this.width='900'" onmouseout="this.width='200'">
             <figcaption style="display:inline; color:grey">A failed board, vias came out, because vias where too small. Time to redesign, with bigger vias.</figcaption>
           </figure>
-          <!-- TODO: redesign video here -->
+          <video width="520" controls>
+            <source src="images/redesign.mp4" type="video/mp4"> Your browser does not support the video tag.
+          </video>
           <figure>
             <img src="images/during%20milling.jpg" alt="during milling" onmouseover="this.width='900'" onmouseout="this.width='200'">
             <figcaption style="display:inline; color:grey">The final board is getting milled.</figcaption>
@@ -273,17 +279,16 @@
           done than said. But converting the ADC values to the temperature was not easy. We had to calibrate, for that we needed some source of known temperature or a thermometer. We had none. So I came up with this crazy setup to get at-least one calibration
           point, the boiling point of water.
           <!-- TODO: pics of pencil in water -->
-          <!-- TODO: use the symbol for celcius -->
-          The heater will be kept powered, and the tip will be kept immersed in water. This will result in a maximum tip temperature of about 100 degree Celsius, the boiling point of water. The water will never allow the tip temperature to rise above 100 boiling
-          point, till then all the heat will be used to rise the temperature of the water and the tip itself. But once water starts boiling all the energy will be absorbed by the water to boil, no heat will be used to rise the temperature until all the
-          water is boiled off.
+          The heater will be kept powered, and the tip will be kept immersed in water. This will result in a maximum tip temperature of about 100&#8451;, the boiling point of water. The water will never allow the tip temperature to rise above 100 boiling point,
+          till then all the heat will be used to rise the temperature of the water and the tip itself. But once water starts boiling all the energy will be absorbed by the water to boil, no heat will be used to rise the temperature until all the water
+          is boiled off.
 
         </p>
         <p>
           Okay, nice, but how do we use this for calibration ?
-          <br> Well, we have the tip at a constant and 'known' temperature, let us assume that this is 100 degree Celsius. Now we get the corresponding ADC reading through the display, so we know that this ADC readout corresponds to 100 degree Celsius, to
-          be precise (100-room temperature), because as we discussed before, the thermocouple measures relative temperature. There should be some way to get the room temperature, a thermometer, but what if you don't have one?. I used my smartphones's
-          temperature sensor after keeping the phone in sleep for some time to let it cool down to almost the room temperature.
+          <br> Well, we have the tip at a constant and 'known' temperature, let us assume that this is 100&#8451;. Now we get the corresponding ADC reading through the display, so we know that this ADC readout corresponds to 100&#8451;, to be precise (100-room
+          temperature), because as we discussed before, the thermocouple measures relative temperature. There should be some way to get the room temperature, a thermometer, but what if you don't have one?. I used my smartphones's temperature sensor after
+          keeping the phone in sleep for some time to let it cool down to almost the room temperature.
         </p>
         <p>
           So, once we have the ADC reading and the room temperature, we can calculate the conversion factor for converting the ADC value to the temperature.
