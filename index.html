@@ -30,10 +30,20 @@
     <div class="container">
       <section id="main_content">
         <p>
-          So, I made an entire soldering station myself! really?. No, I just made the controller, the iron has to be obtained separately. Though this controller is made to be used with Weller PES51 pencil , the idea and the circuit can be used for any pencil with
+          Did I make an entire soldering station myself? really?. No, I just made the controller, the iron has to be obtained separately. Though this controller is made to be used with Weller PES51 pencil , the idea and the circuit can be used for any pencil with
           minor modification in the circuit and firmware, be it Weller, Hakko, Goot etc. And most importantly, I was not alone, I had help from my friend and fellow trainee (at Pre Fab Academy), <a href="http://yadusharon.github.io"> Yadu </a>,
           he did most the micro-controller interfacing and coding, like LCD interfacing. Though I started it as a solo project, later we decided to to do it together.
           <br>Okay now let's read about the development.
+        </p>
+        <h3>TODO</h3>
+        <p>
+          <ul>
+            <li>Implement P/PD control code.</li>
+            <li>Implemnt a way to set the temperature and change calibration settings via 3 button control panel.</li>
+            <li>Design and print/make an housing. </li>
+            <li> Power supply: find/make a 24 V power supply</li>
+            <li>Proper calibration</li>
+          </ul>
         </p>
 
         <h2>Motive</h2>
@@ -219,6 +229,7 @@
             <img src="files/cut&drill.png" alt="cut and drill" onmouseover="this.width='900'" onmouseout="this.width='200'">
             <figcaption style="display:inline; color:grey">The file used for drilling and cutting the board.</figcaption>
           </figure>
+
           <br>
           <br> One thing to keep in mind if you are using the image files to mill the board, find out what the actual dimension of is from the .brd file in the eagle. Use this dimension to scale your image.
           <br>
@@ -244,6 +255,14 @@
             <img src="images/after%20milling.jpg" alt="after milling" onmouseover="this.width='900'" onmouseout="this.width='200'">
             <figcaption style="display:inline; color:grey">The board milled and cut, ready to be populated.</figcaption>
           </figure>
+
+          <br> Even after the redesign there was a silly mistake, at some places the traces where too close that the milling bit didn't pass through, so they were still connected, I had to use a knife to fix it before soldering.
+          <br>
+
+          <figure>
+            <img src="images/fix%20short.jpg" alt="fixing short" onmouseover="this.width='1100'" onmouseout="this.width='500'">
+            <figcaption style="display:inline; color:grey">The patch work: used the knife to fix the short. There were two shorts, one for each of the op-amps.</figcaption>
+          </figure>
           <figure>
             <img src="images/pop%20top.JPG" alt="populated board top" onmouseover="this.width='900'" onmouseout="this.width='500'">
             <figcaption style="display:inline; color:grey">The board populated with all components (except few wires and the NTC sensor section at bottom left).</figcaption>
@@ -255,19 +274,20 @@
             </figcaption>
           </figure>
 
-          Even after the redesign there was a silly mistake, at some places the traces where too close that the milling bit didn't pass through, so they were still connected, I had to use a knife to fix it.
+          <br>
+
           <figure>
-            <img src="images/fix%20short.jpg" alt="fixing short" onmouseover="this.width='1100'" onmouseout="this.width='500'">
-            <figcaption style="display:inline; color:grey">The patch work: used the knife to fix the short. There were two shorts, one for each of the op-amps.</figcaption>
+            <img src="images/amp%20dso.JPG" alt="DSO amplifier board" onmouseover="this.width='800'" onmouseout="this.width='400'">
+            <figcaption style="display:inline; color:grey">Amplifier board is working: the noisy yellow channel is the direct reading, before the amplifier.</figcaption>
           </figure>
 
         </p>
 
         <p>
-          During this time my friend <a href="http://yadusharon.github.io"> Yadu </a>, was experimenting with interfacing the LCD to the FabDuino
-          <!-- TODO: link -->he made (I too made a similar board, not FabDuino, will talk about it later). He had some troubles prototyping the LCD interface; you can see the pictures in the next section and you will know what I'm talking about. In the beginning of the
-          PreFab Academy one of our trainer Mr. Luciano told us that every one of us should do an individual project, later because of the shortage of time and equipments, he said that we can do group projects, thats when Yadu joined the project, actually
-          he was helping before too, but now it's officially OUR project. So he took over the micro-controller section, he started by interfacing the LCD and later he started working on the ADC interface and PWM control.
+          During this time my friend <a href="http://yadusharon.github.io"> Yadu </a>, was experimenting with interfacing the LCD to the <a href="http://fab.cba.mit.edu/content/projects/fabkit/"> FabDuino </a> he made (I too made a similar board, not
+          FabDuino, will talk about it later). He had some troubles prototyping the LCD interface; you can see the pictures in the next section and you will know what I'm talking about. In the beginning of the PreFab Academy one of our trainer Mr. Luciano
+          told us that every one of us should do an individual project, later because of the shortage of time and equipments, he said that we can do group projects, thats when Yadu joined the project, actually he was helping before too, but now it's officially
+          OUR project. So he took over the micro-controller section, he started by interfacing the LCD and later he started working on the ADC interface and PWM control.
           <br> The FabLab or any lab, needs some basic stuff in their inventory, most importantly jumper wires, a lot of them, and all types(M-M, M-F, F-F).
           <br>Anyway it's time to merge our projects.
         </p>
@@ -278,7 +298,10 @@
           Lets give our project a display and a 'brain'. Yadu had the LCD interfaced with the FabDuino on a breadboard. We connected the amplifier section to the micr-controller and tried to read the temperature. We got the ADC values displaying, that was easier
           done than said. But converting the ADC values to the temperature was not easy. We had to calibrate, for that we needed some source of known temperature or a thermometer. We had none. So I came up with this crazy setup to get at-least one calibration
           point, the boiling point of water.
-          <!-- TODO: pics of pencil in water -->
+          <figure>
+            <img src="images/calib-1.JPG" alt="pencil in water" onmouseover="this.width='1100'" onmouseout="this.width='500'">
+            <figcaption style="display:inline; color:grey">The pencil in hot water; the pencil is also being powered to maintain keep the water boiling, this should keep the tip temperature constant.</figcaption>
+          </figure>
           The heater will be kept powered, and the tip will be kept immersed in water. This will result in a maximum tip temperature of about 100&#8451;, the boiling point of water. The water will never allow the tip temperature to rise above 100 boiling point,
           till then all the heat will be used to rise the temperature of the water and the tip itself. But once water starts boiling all the energy will be absorbed by the water to boil, no heat will be used to rise the temperature until all the water
           is boiled off.
@@ -292,23 +315,87 @@
         </p>
         <p>
           So, once we have the ADC reading and the room temperature, we can calculate the conversion factor for converting the ADC value to the temperature.
-          <br> conversion.factor = (100-room temperature) / ADC.value .
+          <br> conversion.factor = (100-room.temperature) / ADC.value .
+          <br> then
+          <br> tip.temperature = ADC.value * conversion.factor + offset
+          <br> where offset is the room temperature
           <br> I accept, this is a very bad calibration and assumes linear relationship between temperature difference across the thermocouple junction and the potential difference it produces. But we didn't have any choice. We have to add the NTC and start
           using it ASAP, but I fear even this may need a calibration.
           <br> Anyway this method will give an approximate tip temperature reading.
         </p>
-        <!-- TODO: pic of LCD displaying the temperature, ADC, and conversion factor -->
-        <!-- TODO: the code?? -->
 
+        <figure>
+          <img src="images/72deg.JPG" alt="after callibration" onmouseover="this.width='1100'" onmouseout="this.width='500'">
+          <figcaption style="display:inline; color:grey">After callibration; forgot to add the offset, thats why the boiling temperature of water is at 72&#8451;.</figcaption>
+        </figure>
+        <figure>
+          <img src="images/400deg.JPG" alt="pencil heated" onmouseover="this.width='1100'" onmouseout="this.width='500'">
+          <figcaption style="display:inline; color:grey">The pencil at about 400&#8451; and display showing the value.</figcaption>
+        </figure>
+        <!-- TODO: pic of LCD displaying the temperature, ADC, and conversion factor -->
+
+        <pre>
+          <code>#include <LiquidCrystal.h>
+
+            // initialize the library with the numbers of the interface pins
+
+            LiquidCrystal lcd(7, 6, 5, 4, 3, 2);
+            int rawin = 0;
+            float  temp =0.0;
+
+            void setup() {
+              // set up the LCD's number of columns and rows:
+
+              lcd.begin(16,2);
+            }
+
+            void loop() {
+              // set the cursor to (0,0):
+
+              lcd.setCursor(1, 0);
+              // print from 0 to 9:
+              lcd.print("Temp in Celsius");
+
+/*
+              char a[32]= "Hello dude, this is Fab Academy";
+              for (int i=0; i<32; i++) {
+                lcd.setCursor(1,1);
+                for (int j=i; j<32; j++) {
+                  lcd.print(a[j]);
+                }
+                delay(500);
+              }
+*/
+              rawin = analogRead(A0);
+              temp = rawin * 0.22 + 20.0;
+              delay(1);
+              lcd.setCursor(1,1);
+              lcd.print(temp);
+              delay(100);
+            }
+          </code>
+        </pre>
+        <p>
+          We used the 16X2 character LCD (<a href="http://www.lumex.com/content/files/ProductAttachment/LCM-S01602DTR-M.pdf">LCM-S01602DTR/M</a>). For the LCD interface the connections are..
+          <pre>
+            * LCD RS pin to digital pin 7
+            * LCD Enable pin to digital pin 6
+            * LCD D4 pin to digital pin 5
+            * LCD D5 pin to digital pin 4
+            * LCD D6 pin to digital pin 3
+            * LCD D7 pin to digital pin 2
+            * LCD R/W pin to ground
+            * LCD pins 1 & 2 to +5V and ground
+            * LCD VO pin (pin 3) to ground
+          </pre>
+          <br>
+          Also use the ADC0/Pin A0 for the input.
+        </p>
         <h3>Stage 4: Get control </h3>
         <p>
           We are going to use the tip temperature to control the tip temperature (what? well, thats how it is.) by controlling the power flow. This is done by switching the MOSFET on and off to control the duty cycle and thus the average energy flow (power). The
-          duty cycle control is achieved using PWM (Pulse Width Modulation) .
+          duty cycle control is achieved using PWM (Pulse Width Modulation).
         </p>
-
-
-
-
 
         <div class="row">
           <a href="#hide1" class="hide" id="hide1">
@@ -325,13 +412,6 @@
         </div>
         </lin>
 
-
-        <!--
-        <figure>
-          <img src="images/vinyl/vn1.JPG" alt="Vinyl Cutter" onmouseover="this.width='1000'" onmouseout="this.width='110'">
-          <figcaption style="display:inline; color:grey">The Vinyl Cutter we have, Roland CAMM-1 GX-24</figcaption>
-        </figure>
--->
 
       </section>
     </div>
