@@ -19,7 +19,7 @@
     <header>
       <div class="container">
         <h1>DIY Soldering Station</h1>
-        <h2>Project for PreFab Academy</h2>
+        <h2>Project for Pre-Fab Academy</h2>
 
         <section id="downloads">
 
@@ -31,7 +31,7 @@
       <section id="main_content">
         <p>
           Did I make an entire soldering station myself? really?. No, I just made the controller, the iron has to be obtained separately. Though this controller is made to be used with Weller PES51 pencil , the idea and the circuit can be used for any pencil with
-          minor modification in the circuit and firmware, be it Weller, Hakko, Goot etc. And most importantly, I was not alone, I had help from my friend and fellow trainee (at Pre Fab Academy), <a href="http://yadusharon.github.io"> Yadu </a>,
+          minor modification in the circuit and firmware, be it Weller, Hakko, Goot etc. And most importantly, I was not alone, I had help from my friend and fellow trainee (at Pre Fab Academy), <a href="http://yadusharon.github.io"> Yadu</a>,
           he did most the micro-controller interfacing and coding, like LCD interfacing. Though I started it as a solo project, later we decided to to do it together.
           <br>Okay now let's read about the development.
         </p>
@@ -58,7 +58,7 @@
           </figure>
         </p>
         <p>
-          So one day in the Fab Academy we had to make the <a href="http://fab.cba.mit.edu/content/projects/fabisp/"> FabISP </a> and one of the two soldering station is not working. My friend <a href="http://yadusharon.github.io"> Yadu </a> told me that
+          So one day in the Fab Academy we had to make the <a href="http://fab.cba.mit.edu/content/projects/fabisp/"> FabISP </a> and one of the two soldering station is not working. My friend <a href="http://yadusharon.github.io"> Yadu</a> told me that
           he saw someone plugging it into the 230v wall socket. So we were almost sure that it got fried, so me, Yadu and our trainer Mr Luciano tried opened the controller unit expecting a blown fuse. To our surprise this $100 equipment didn't have fuse
           inside. On inspecting further we found that the transformer primary winding of the transformer and the voltage regulator inside the circuit board is fried. The micro-controller was not getting any power even if we supply 24v to the board directly,
           using a lab power supply.
@@ -200,7 +200,7 @@
         <h3>Stage 3: Op-Amp 'onboard' </h3>
 
         <p>
-          Its time to take the project to the next level, time to make a proper PCB for the amplifier. I did a lot of research and came across an application note from Microchip, link <a href="files/00844a.pdf">here</a> and <a href="ww1.microchip.com/downloads/en/AppNotes/00844a.pdf"> here</a>.
+          Its time to take the project to the next level, time to make a proper PCB for the amplifier. I did a lot of research and came across an application note from Microchip, link <a href="files/00844a.pdf">here</a> and <a href="http://ww1.microchip.com/downloads/en/AppNotes/00844a.pdf"> here</a>.
           The app-note describes a differential amplifier using two op-amps to amplify the signal from a thermocouple to 0-5 V range. So I used this design as a reference for my design. The board I designed has an amplifier setup described in the app-note,
           a 10K NTC temperature sensor for measuring the absolute room temperature and the MOSFET, <a href="https://www.fairchildsemi.com/datasheets/RF/RFD16N05LSM.pdf">RFD16N05L </a> (16A, 50V, 60W continues, logic level N-channel-MOSFET). All five wires
           from the pencil goes to this board. The board has two outputs for the ADC, basically the absolute and tip temperatures. The board also requires two levels of voltage, 24v, 2A supply for the heater and 5v for everything else. I also made a large
@@ -214,9 +214,10 @@
             <figcaption style="display:inline; color:grey">The top later of the board (bottom is just a ground plane, no traces. The outer rectangle is drawn in milling layer and this will be used to cutout the board after milling.</figcaption>
           </figure>
           <br>
+          <h4>Eagle files</h4>
           <br>
-          <a href="files/eagle%2520files/sold.sch">Schematic, eagle file.</a>
-          <a href="files/eagle%2520files/sold.brd">Board, eagle file.</a>
+          <a href="files/eagle/sold.sch" download="sold-stn-amp-brd.sch">Schematic.</a>
+          <a href="files/eagle/sold.brd" download="sold-stn-amp-brd.brd">Board.</a>
           <!-- TODO: optional library file  -->
           <br>
           <br> From this design we milled the board using the Roland MDX-20 mill in our lab. The image of the board (top, pads, vias and milling layers) is exported as monochrome .png and edited using Gimp to make the following images. These image were used
@@ -284,9 +285,9 @@
         </p>
 
         <p>
-          During this time my friend <a href="http://yadusharon.github.io"> Yadu </a>, was experimenting with interfacing the LCD to the <a href="http://fab.cba.mit.edu/content/projects/fabkit/"> FabDuino </a> he made (I too made a similar board, not
-          FabDuino, will talk about it later). He had some troubles prototyping the LCD interface; you can see the pictures in the next section and you will know what I'm talking about. In the beginning of the PreFab Academy one of our trainer Mr. Luciano
-          told us that every one of us should do an individual project, later because of the shortage of time and equipments, he said that we can do group projects, thats when Yadu joined the project, actually he was helping before too, but now it's officially
+          During this time my friend <a href="http://yadusharon.github.io"> Yadu</a>, was experimenting with interfacing the LCD to the <a href="http://fab.cba.mit.edu/content/projects/fabkit/"> FabDuino</a> he made (I too made a similar board, not FabDuino,
+          will talk about it later). He had some troubles prototyping the LCD interface; you can see the pictures in the next section and you will know what I'm talking about. In the beginning of the Pre-Fab Academy one of our trainer Mr. Luciano told
+          us that every one of us should do an individual project, later because of the shortage of time and equipments, he said that we can do group projects, thats when Yadu joined the project, actually he was helping before too, but now it's officially
           OUR project. So he took over the micro-controller section, he started by interfacing the LCD and later he started working on the ADC interface and PWM control.
           <br> The FabLab or any lab, needs some basic stuff in their inventory, most importantly jumper wires, a lot of them, and all types(M-M, M-F, F-F).
           <br>Anyway it's time to merge our projects.
@@ -388,13 +389,38 @@
             * LCD pins 1 & 2 to +5V and ground
             * LCD VO pin (pin 3) to ground
           </pre>
-          <br>
-          Also use the ADC0/Pin A0 for the input.
+          <br> Also use the ADC0/Pin A0 for the input.
         </p>
         <h3>Stage 4: Get control </h3>
         <p>
-          We are going to use the tip temperature to control the tip temperature (what? well, thats how it is.) by controlling the power flow. This is done by switching the MOSFET on and off to control the duty cycle and thus the average energy flow (power). The
-          duty cycle control is achieved using PWM (Pulse Width Modulation).
+          We are going to use the present tip temperature to control the tip temperature (what? well, thats how it is.) by controlling the power flow. This is done by switching the MOSFET on and off to control the duty cycle and thus the average energy flow (power).
+          The duty cycle control is achieved using PWM (Pulse Width Modulation).
+        </p>
+        <p>
+          At first, we will be using a simple control, we set a temperature (at first in the program itself, not through the interface), then we switch on the heater if the set temperature (S.T) is greater than present temperature (P.T). And we switch of the heater
+          if P.T &gt; S.T. This method is not very safe as the tip temperature tends to oscillate around or below the S.T. This is because of the delay between the heater control signal and the actual temperature change. We control the heater by switching
+          on and off, the MOSFET, depending on the P.T. When we switch on the heater element gets the full power and heats up very fast, depending on the placement of the actual temperature sensor we can only read this new temperature after a delay, this
+          causes the temperature to overshoot slightly. This in-turn may produce an oscillating behavior. One fix would be to reduce the power to the heater at any given instant. Thus reducing the overshoot. The power-flow can be controlled by adjusting
+          the PWM duty cycle.
+        </p>
+        <p>
+          During this time we actually made a three button control board to use in future, to set the temperature and control other functions.
+          We plan to use the top and bottom buttons for temperature up/down and the middle button for menu election. On pressing any of the button
+          corresponding interrupt codes will be executed to make changes accordingly.
+          <br>
+          <figure>
+            <img src="images/control-1.JPG" alt="control board" onmouseover="width='500'" onmouseout="this.width='300'">
+            <figcaption style="display:inline; color:grey">The three button control board.</figcaption>
+          </figure>
+          <figure>
+            <img src="images/control-sch.png" alt="control board schematic" onmouseover="width='800'" onmouseout="this.width='300'">
+            <figcaption style="display:inline; color:grey">The three button control board schematic.</figcaption>
+          </figure>
+          <br>
+          <h4>Eagle files</h4>
+          <br>
+          <a href="files/eagle/ctrl-brd.sch" download="sold-stn-switch-brd.sch">Schematic.</a>
+          <a href="files/eagle/ctrl-brd.brd" download="sold-stn-switch-brd.brd">Board.</a>
         </p>
 
         <div class="row">
