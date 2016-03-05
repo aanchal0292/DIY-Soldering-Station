@@ -30,9 +30,11 @@
     <div class="container">
       <section id="main_content">
         <p>
-          Did I make an entire soldering station myself? really?. No, I just made the controller, the iron has to be obtained separately. Though this controller is made to be used with Weller PES51 pencil , the idea and the circuit can be used for any pencil with
-          minor modification in the circuit and firmware, be it Weller, Hakko, Goot etc. And most importantly, I was not alone, I had help from my friend and fellow trainee (at Pre Fab Academy), <a href="http://yadusharon.github.io"> Yadu</a>,
-          he did most the micro-controller interfacing and coding, like LCD interfacing. Though I started it as a solo project, later we decided to to do it together.
+          Did I make an entire soldering station myself? really?. No, I just made the controller, the iron has to be obtained separately. Though this controller
+          is made to be used with Weller PES51 pencil , the idea and the circuit can be used for any pencil with minor modification in the circuit and
+          firmware, be it Weller, Hakko, Goot etc. And most importantly, I was not alone, I had help from my friend and fellow trainee (at Pre Fab Academy),
+          <a href="http://yadusharon.github.io"> Yadu</a>, he did most the micro-controller interfacing and coding, like LCD interfacing. Though
+          I started it as a solo project, later we decided to to do it together.
           <br>Okay now let's read about the development.
         </p>
         <h3>TODO</h3>
@@ -49,32 +51,37 @@
         <h2>Motive</h2>
 
         <p>
-          First of all thanks to whoever selected and sent the the equipments to the FabLab here. He/she was the reason for this project, why? In India we have 230v and almost all the equipments here works on 110v. Most of these machine (including a 2KW electric
-          furnace) require a transformer to convert the 230v to 100v. Though there is a 'big' sticker pasted on almost all equipments saying that it need 110v AC, some 'illiterate' 'idiot' will come and plug something to the 230v supply, and BHOOOM, he
-          just contributed something to this pile of crap.
+          First of all thanks to whoever selected and sent the the equipments to the FabLab here. He/she was the reason for this project, why? In India we have 230v
+          and almost all the equipments here works on 110v. Most of these machine (including a 2KW electric furnace) require a transformer to convert the
+          230v to 100v. Though there is a 'big' sticker pasted on almost all equipments saying that it need 110v AC, some 'illiterate' 'idiot' will come
+          and plug something to the 230v supply, and BHOOOM, he just contributed something to this pile of crap.
           <figure>
             <img src="images/scrap.JPG" alt="fried" width='500' onmouseover="this.width='1000'" onmouseout="this.width='499'">
             <figcaption style="display:inline; color:grey">Most of the these items are a result of carelessness</figcaption>
           </figure>
         </p>
         <p>
-          So one day in the Fab Academy we had to make the <a href="http://fab.cba.mit.edu/content/projects/fabisp/"> FabISP </a> and one of the two soldering station is not working. My friend <a href="http://yadusharon.github.io"> Yadu</a> told me that
-          he saw someone plugging it into the 230v wall socket. So we were almost sure that it got fried, so me, Yadu and our trainer Mr Luciano tried opened the controller unit expecting a blown fuse. To our surprise this $100 equipment didn't have fuse
-          inside. On inspecting further we found that the transformer primary winding of the transformer and the voltage regulator inside the circuit board is fried. The micro-controller was not getting any power even if we supply 24v to the board directly,
-          using a lab power supply.
+          So one day in the Fab Academy we had to make the <a href="http://fab.cba.mit.edu/content/projects/fabisp/"> FabISP </a> and one of the two soldering
+          station is not working. My friend <a href="http://yadusharon.github.io"> Yadu</a> told me that he saw someone plugging it into the 230v wall
+          socket. So we were almost sure that it got fried, so me, Yadu and our trainer Mr Luciano tried opened the controller unit expecting a blown fuse.
+          To our surprise this $100 equipment didn't have fuse inside. On inspecting further we found that the transformer primary winding of the transformer
+          and the voltage regulator inside the circuit board is fried. The micro-controller was not getting any power even if we supply 24v to the board
+          directly, using a lab power supply.
           <br>
           <figure>
             <img src="images/inside-out.JPG" alt="disassembled" width='500' onmouseover="this.width='1000'" onmouseout="this.width='499'">
             <figcaption style="display:inline; color:grey">Inside-out: The disassembled station. This image is taken long after we started the project so all the wires are disconnected from the board.</figcaption>
           </figure>
-          Now we are left with only one soldering station, I am not waiting for anyone and they are slow. So I decided to use the lab power supply to power the pencil directly, so that I can just finish soldering my circuit and I don't have to wait for anyone.
-          That was the motivation, I immediately remembered Mr Luciano talking about the project we were supposed to do as a part of the academy. I just got mine.
+          Now we are left with only one soldering station, I am not waiting for anyone and they are slow. So I decided to use the lab power supply to power the pencil
+          directly, so that I can just finish soldering my circuit and I don't have to wait for anyone. That was the motivation, I immediately remembered
+          Mr Luciano talking about the project we were supposed to do as a part of the academy. I just got mine.
         </p>
 
         <h2> Evolution</h2>
 
         <p>
-          The pencil had 5 wires coming out of it, I knew that the pencil had a heating element, a temperature sensor and the pencil's rubber grip is grounded for ESD protection.
+          The pencil had 5 wires coming out of it, I knew that the pencil had a heating element, a temperature sensor and the pencil's rubber grip is grounded for
+          ESD protection.
 
           <figure>
             <img src="images/conn.JPG" alt="connector" width='500' onmouseover="this.width='1000'" onmouseout="this.width='499'">
@@ -82,15 +89,16 @@
           </figure>
           <figure>
             <img src="images/wires.JPG" alt="5 wires" width='500' onmouseover="this.width='1000'" onmouseout="this.width='499'">
-            <figcaption style="display:inline; color:grey">The 5 wires coming out of the front panel connector. Notice the green wire with a screw on connector, thats definitely the ground wire, for ESD protection.</figcaption>
+            <figcaption style="display:inline; color:grey">The 5 wires coming out of the front panel connector. Notice the green wire with a screw on connector, thats definitely the ground wire, for
+              ESD protection.</figcaption>
           </figure>
 
-          I had to know which wire is which. 'Googled' for some time, but couldn't find the answer I was looking for, seems that this model has many revisions. Now I need to find out what each of the wire is for. But I got some other information retarding the sensor
-          used, very likely to be a K-type thermocouple.
+          I had to know which wire is which. 'Googled' for some time, but couldn't find the answer I was looking for, seems that this model has many revisions. Now
+          I need to find out what each of the wire is for. But I got some other information retarding the sensor used, very likely to be a K-type thermocouple.
         </p>
         <p>
-          5 wires, so the guess would be, 2 for heater, 2 for sensor, and 1 for ESD(grounding). On inspecting the connections, I find that the green were is connected to the earth wire of the mains via the body of the transformer, so that wire clearly is the ESD.
-          One down 5 more to go.
+          5 wires, so the guess would be, 2 for heater, 2 for sensor, and 1 for ESD(grounding). On inspecting the connections, I find that the green were is connected
+          to the earth wire of the mains via the body of the transformer, so that wire clearly is the ESD. One down 5 more to go.
         </p>
         <p>
           Then I inspected the circuit board and followed the traces hoping identify the wires.
@@ -103,8 +111,10 @@
             <figcaption style="display:inline; color:grey">The bottom.</figcaption>
           </figure>
           <!-- TODO: mark the heater traces in the images -->
-          <br> I was so excited about the project, so much that I forgot to take a any pictures before removing the pot and the wires from the front-panel. You can also see that I broke some of the traces for testing purposes. I had completely that I was
-          supposed to document this project. So I'm posting two pictures from <a href="http://forum.allaboutcircuits.com/threads/weller-wes51-failed.54325/"> this </a> page for reference. This guy took good quality pictures, thanks you <a href="http://forum.allaboutcircuits.com/members/triden.126050/"> Triden</a>.
+          <br> I was so excited about the project, so much that I forgot to take a any pictures before removing the pot and the wires from the front-panel.
+          You can also see that I broke some of the traces for testing purposes. I had completely that I was supposed to document this project. So I'm
+          posting two pictures from <a href="http://forum.allaboutcircuits.com/threads/weller-wes51-failed.54325/"> this </a> page for reference. This
+          guy took good quality pictures, thanks you <a href="http://forum.allaboutcircuits.com/members/triden.126050/"> Triden</a>.
           <br> You can see that the two thick traces from the pin one and two of component with the heat sink. I will be mentioning about these soon.
           <br>
           <figure>
@@ -115,32 +125,42 @@
             <img src="images/logic%20bot%20not.jpg" alt="logic bot not mine" width='500' onmouseover="this.width='1000'" onmouseout="this.width='499'">
             <figcaption style="display:inline; color:grey">And the bottom.</figcaption>
           </figure>
-          <br> See that big component with a heat sink? It's FET or a power transistor (very likely a MOSFET) which controls the power flow to the heater. Component is marked BTA12, and I found this <a href="https://www.onsemi.com/pub/Collateral/BTA12-600BW3-D.PDF"> data-sheet </a>.
-          I was wrong! it's not a FET, not a transistor; It is a Triac, a Silicon Bidirectional Thyristor. The control circuit/micrcontroller will be controlling this component via a PWM (Pulse Width Modulation) signals to the heater power. So?, follow
-          the traces from the Triac, see the two thick traces from the Triac?, from pin 1 and pin 2?, these wires must be going to the heater. Following the trace further, I found that one these traces goes to the transformer secondary via a shunt resistor.
-          And the other goes to one of the RED wires from the front-panel. So the other RED wire must be the going to the second wire of the transformer secondary, right? Yes it does and the circuit is complete. So the RED wires are going to the heater.
-          The clues were, thick traces to carry high current (about 2A), direct connection to the 24v AC output of the transformer (no digital component/sensor will be powered by the unregulated AC supply).
-          <br> Lets be sure about it, the pencil is rated for 50W at 24v, means it draws about 2A at 24v. So the heating element must have a resistance lower than 12 ohms, lets see.
-          <br> I set 10 V at a maximum current limit of 2A with the power supply and connected the supply to the RED wires. The pencil drew only 0.94 A, which means the resistance is about 10/0.94 = 10.6 ohm. Just like we expected.
+          <br> See that big component with a heat sink? It's FET or a power transistor (very likely a MOSFET) which controls the power flow to the heater.
+          Component is marked BTA12, and I found this <a href="https://www.onsemi.com/pub/Collateral/BTA12-600BW3-D.PDF"> data-sheet </a>. I was wrong!
+          it's not a FET, not a transistor; It is a Triac, a Silicon Bidirectional Thyristor. The control circuit/micrcontroller will be controlling this
+          component via a PWM (Pulse Width Modulation) signals to the heater power. So?, follow the traces from the Triac, see the two thick traces from
+          the Triac?, from pin 1 and pin 2?, these wires must be going to the heater. Following the trace further, I found that one these traces goes to
+          the transformer secondary via a shunt resistor. And the other goes to one of the RED wires from the front-panel. So the other RED wire must be
+          the going to the second wire of the transformer secondary, right? Yes it does and the circuit is complete. So the RED wires are going to the
+          heater. The clues were, thick traces to carry high current (about 2A), direct connection to the 24v AC output of the transformer (no digital
+          component/sensor will be powered by the unregulated AC supply).
+          <br> Lets be sure about it, the pencil is rated for 50W at 24v, means it draws about 2A at 24v. So the heating element must have a resistance lower
+          than 12 ohms, lets see.
+          <br> I set 10 V at a maximum current limit of 2A with the power supply and connected the supply to the RED wires. The pencil drew only 0.94 A, which
+          means the resistance is about 10/0.94 = 10.6 ohm. Just like we expected.
         </p>
         <p>
           With just two wires remaining it is obvious that these are going to be the sensor leads. Now what type of a sensor is this?
-          <br> If the sensor is resistive (the resistance changes with temperature), PTC, NTC, PT100 etc it must have a high resistance, ranging from 50ohm for an RTD to 10s of Kohms for a thermistor. . And if the sensor is a thermocouple (produces a potential
-          difference proportional to the temperature), it must have a very low resistance. When measured I found a very low resistance, almost short circuit so it must be a thermocouple and my 'googling' also supports this guess.
+          <br> If the sensor is resistive (the resistance changes with temperature), PTC, NTC, PT100 etc it must have a high resistance, ranging from 50ohm
+          for an RTD to 10s of Kohms for a thermistor. . And if the sensor is a thermocouple (produces a potential difference proportional to the temperature),
+          it must have a very low resistance. When measured I found a very low resistance, almost short circuit so it must be a thermocouple and my 'googling'
+          also supports this guess.
         </p>
         <p>
-          Lets check the thermocouple, the information from <a href="https://en.wikipedia.org/wiki/Thermocouple">Wikipedia</a> and <a href="http://srdata.nist.gov/its90/download/type_k.tab"> NIST</a> (Nationla Institute of Standards and Technology) data
-          tells that about 4 mV potential difference can be expected across the terminals at about (100&#8451; + room temperaure). (100&#8451; + room temperaure) because the thermocouple can only measure the temperature relatively. It is made of a junction
-          between two metals and the potential drop produced by the junction depends on the temperature difference between the metals. In case of the soldering iron one of the metal is at the tip temperature and the other will be at room temperature.
-          So the tip temperature is measured relative to the room temperature.
+          Lets check the thermocouple, the information from <a href="https://en.wikipedia.org/wiki/Thermocouple">Wikipedia</a> and <a href="http://srdata.nist.gov/its90/download/type_k.tab"> NIST</a>          (Nationla Institute of Standards and Technology) data tells that about 4 mV potential difference can be expected across the terminals at about
+          (100&#8451; + room temperaure). (100&#8451; + room temperaure) because the thermocouple can only measure the temperature relatively. It is made
+          of a junction between two metals and the potential drop produced by the junction depends on the temperature difference between the metals. In
+          case of the soldering iron one of the metal is at the tip temperature and the other will be at room temperature. So the tip temperature is measured
+          relative to the room temperature.
           <br> This tells us that even at the maximum temperature of the iron, the potential difference by the thermocouple will be under 20 mV.
         </p>
 
         <h3>Stage one: the makeshift soldering station</h3>
 
         <p>
-          Okay, I don't have the time to make the control unit now, I need to make the FabISP.(don't runaway I'm going to make it, keep reading) So I set the power supply to a maximum of 24v and connected to the heating element (RED wires). The thermocouple is
-          connected to the oscilloscope to monitor the 'temperature' (actually the potential differance). The DSO is set to read the average DC voltage across the thermocouple.
+          Okay, I don't have the time to make the control unit now, I need to make the FabISP.(don't runaway I'm going to make it, keep reading) So I set the power
+          supply to a maximum of 24v and connected to the heating element (RED wires). The thermocouple is connected to the oscilloscope to monitor the
+          'temperature' (actually the potential differance). The DSO is set to read the average DC voltage across the thermocouple.
           <br>This one is a really expensive soldering station, but it will do for the day. Okay, now, picture time....
           <figure>
             <img src="images/sg-1-1.JPG" alt="setup" width='500' onmouseover="this.width='1000'" onmouseout="this.width='499'">
@@ -160,21 +180,25 @@
           </figure>
         </p>
         <p>
-          To make use of this setup we need to hold the pencil at a safe temperature and we don't know what value of the DSO reading corresponds to that temperature. The fix? I connected the pencil to the working controller and let it heat up to the set value,
-          disconnect and immediately connect to the socket of our make-shift soldering station, whatever the DSO displays corresponds to the temperature we need the pencil to be at. Tweaking the current limit dial in the power supply, I found the current
-          required to keep the pencil at this temperature, 0.9A to 1.0A.
-          <br> The setup is working and I could solder my FabISP. I also used this setup to de-solder the board later, and use the components to make another board, <a href="http://fab.cba.mit.edu/content/projects/fabispkey/">FabISP Key</a>. But the signal
-          is too weak compared to the noise. I have to amplify the signal.
+          To make use of this setup we need to hold the pencil at a safe temperature and we don't know what value of the DSO reading corresponds to that temperature.
+          The fix? I connected the pencil to the working controller and let it heat up to the set value, disconnect and immediately connect to the socket
+          of our make-shift soldering station, whatever the DSO displays corresponds to the temperature we need the pencil to be at. Tweaking the current
+          limit dial in the power supply, I found the current required to keep the pencil at this temperature, 0.9A to 1.0A.
+          <br> The setup is working and I could solder my FabISP. I also used this setup to de-solder the board later, and use the components to make another
+          board, <a href="http://fab.cba.mit.edu/content/projects/fabispkey/">FabISP Key</a>. But the signal is too weak compared to the noise. I have
+          to amplify the signal.
         </p>
 
         <h3> Stage 2: Op-Amp</h3>
 
         <p>
-          I will be making the controller using one of the atmega micro-controller available in the lab. Most likely a Atmega168p or Atmega328p. Its pretty obvious that we have to scale (amplify) the 1-20mv to 0-5v for measuring the thermocouple potential via the
-          ADC. This process obviously requires an amplifier, so time to make one. But one problem, the components in the FabLab are only available SMT packages. So prototyping is going to be challenging.
+          I will be making the controller using one of the atmega micro-controller available in the lab. Most likely a Atmega168p or Atmega328p. Its pretty obvious
+          that we have to scale (amplify) the 1-20mv to 0-5v for measuring the thermocouple potential via the ADC. This process obviously requires an amplifier,
+          so time to make one. But one problem, the components in the FabLab are only available SMT packages. So prototyping is going to be challenging.
         </p>
         <p>
-          I made a simple non-inverting amplifier using the op-amp AD-8615, few filter capacitors and the potentiometer from the original Weller logic board. And this little creature was born.
+          I made a simple non-inverting amplifier using the op-amp AD-8615, few filter capacitors and the potentiometer from the original Weller logic board. And
+          this little creature was born.
           <figure>
             <img src="images/sg-2-schem.JPG" alt="schematic" width='500' onmouseover="this.width='1300'" onmouseout="this.width='499'">
             <figcaption style="display:inline; color:grey">The schematics of my first om-amp prototype along with some of my notes.</figcaption>
@@ -200,18 +224,23 @@
         <h3>Stage 3: Op-Amp 'onboard' </h3>
 
         <p>
-          Its time to take the project to the next level, time to make a proper PCB for the amplifier. I did a lot of research and came across an application note from Microchip, link <a href="files/00844a.pdf">here</a> and <a href="http://ww1.microchip.com/downloads/en/AppNotes/00844a.pdf"> here</a>.
-          The app-note describes a differential amplifier using two op-amps to amplify the signal from a thermocouple to 0-5 V range. So I used this design as a reference for my design. The board I designed has an amplifier setup described in the app-note,
-          a 10K NTC temperature sensor for measuring the absolute room temperature and the MOSFET, <a href="https://www.fairchildsemi.com/datasheets/RF/RFD16N05LSM.pdf">RFD16N05L </a> (16A, 50V, 60W continues, logic level N-channel-MOSFET). All five wires
-          from the pencil goes to this board. The board has two outputs for the ADC, basically the absolute and tip temperatures. The board also requires two levels of voltage, 24v, 2A supply for the heater and 5v for everything else. I also made a large
-          copper pad which act as heat sink for the MOSFET. The design uses a double sided PCB and the bottom layer is used only as a ground plane.
+          Its time to take the project to the next level, time to make a proper PCB for the amplifier. I did a lot of research and came across an application note
+          from Microchip, link <a href="files/00844a.pdf">here</a> and <a href="http://ww1.microchip.com/downloads/en/AppNotes/00844a.pdf"> here</a>.
+          The app-note describes a differential amplifier using two op-amps to amplify the signal from a thermocouple to 0-5 V range. So I used this design
+          as a reference for my design. The board I designed has an amplifier setup described in the app-note, a 10K NTC temperature sensor for measuring
+          the absolute room temperature and the MOSFET, <a href="https://www.fairchildsemi.com/datasheets/RF/RFD16N05LSM.pdf">RFD16N05L </a> (16A, 50V,
+          60W continues, logic level N-channel-MOSFET). All five wires from the pencil goes to this board. The board has two outputs for the ADC, basically
+          the absolute and tip temperatures. The board also requires two levels of voltage, 24v, 2A supply for the heater and 5v for everything else. I
+          also made a large copper pad which act as heat sink for the MOSFET. The design uses a double sided PCB and the bottom layer is used only as a
+          ground plane.
           <figure>
             <img src="images/sch.png" alt="schematic" width='500' onmouseover="this.width='1300'" onmouseout="this.width='500'">
             <figcaption style="display:inline; color:grey">The schematic of the amplifier board.</figcaption>
           </figure>
           <figure>
             <img src="images/brd.png" alt="sch brd" width='500' onmouseover="this.width='1300'" onmouseout="this.width='500'">
-            <figcaption style="display:inline; color:grey">The top later of the board (bottom is just a ground plane, no traces. The outer rectangle is drawn in milling layer and this will be used to cutout the board after milling.</figcaption>
+            <figcaption style="display:inline; color:grey">The top layer of the board (bottom is just a ground plane, no traces. The outer rectangle is drawn in milling layer and this will be used to
+              cutout the board after milling.</figcaption>
           </figure>
           <br>
           <h4>Eagle files</h4>
@@ -220,8 +249,10 @@
           <a href="files/eagle/sold.brd" download="sold-stn-amp-brd.brd">Board.</a>
           <!-- TODO: optional library file  -->
           <br>
-          <br> From this design we milled the board using the Roland MDX-20 mill in our lab. The image of the board (top, pads, vias and milling layers) is exported as monochrome .png and edited using Gimp to make the following images. These image were used
-          to mill and cut the board. The fab modules are used to control the machine. Once the image is loaded and correct settings are chosen the software predicts the tool path so that the white area in the image is preserved.
+          <br> From this design we milled the board using the Roland MDX-20 mill in our lab. The image of the board (top, pads, vias and milling layers) is
+          exported as monochrome .png and edited using Gimp to make the following images. These image were used to mill and cut the board. The fab modules
+          are used to control the machine. Once the image is loaded and correct settings are chosen the software predicts the tool path so that the white
+          area in the image is preserved.
           <figure>
             <img src="files/traces.png" alt="traces" width='500' onmouseover="this.width='900'" onmouseout="this.width='200'">
             <figcaption style="display:inline; color:grey">The file used for milling the traces using the Roland mill.</figcaption>
@@ -232,7 +263,8 @@
           </figure>
 
           <br>
-          <br> One thing to keep in mind if you are using the image files to mill the board, find out what the actual dimension of is from the .brd file in the eagle. Use this dimension to scale your image.
+          <br> One thing to keep in mind if you are using the image files to mill the board, find out what the actual dimension of is from the .brd file in
+          the eagle. Use this dimension to scale your image.
           <br>
           <br> Few more pictures and videos.
           <br> An interesting animation of the last stages of the design, actually the routing.
@@ -249,7 +281,7 @@
             <source src="images/redesign.mp4" type="video/mp4"> Your browser does not support the video tag.
           </video>
           <figure>
-            <img src="images/during%20milling.jpg" alt="during milling"width='200' onmouseover="this.width='900'" onmouseout="this.width='200'">
+            <img src="images/during%20milling.jpg" alt="during milling" width='200' onmouseover="this.width='900'" onmouseout="this.width='200'">
             <figcaption style="display:inline; color:grey">The final board is getting milled.</figcaption>
           </figure>
           <figure>
@@ -257,7 +289,8 @@
             <figcaption style="display:inline; color:grey">The board milled and cut, ready to be populated.</figcaption>
           </figure>
 
-          <br> Even after the redesign there was a silly mistake, at some places the traces where too close that the milling bit didn't pass through, so they were still connected, I had to use a knife to fix it before soldering.
+          <br> Even after the redesign there was a silly mistake, at some places the traces where too close that the milling bit didn't pass through, so they
+          were still connected, I had to use a knife to fix it before soldering.
           <br>
 
           <figure>
@@ -270,8 +303,8 @@
           </figure>
           <figure>
             <img src="images/pop%20bot.JPG" alt="populated board bottom" width='500' onmouseover="this.width='900'" onmouseout="this.width='500'">
-            <figcaption style="display:inline; color:grey">Bottom side of the board, you can see the 'DIY' interconnects. Well, whats with the texture you may ask; I used sand-blaster it, why not?. It had lot of fingerprints and other dirt on it, so 'I did what I have to do'. (or!!! what I wanted
-              to do).
+            <figcaption style="display:inline; color:grey">Bottom side of the board, you can see the 'DIY' interconnects. Well, whats with the texture you may ask; I used sand-blaster it, why not?.
+              It had lot of fingerprints and other dirt on it, so 'I did what I have to do'. (or!!! what I wanted to do).
             </figcaption>
           </figure>
 
@@ -285,10 +318,11 @@
         </p>
 
         <p>
-          During this time my friend <a href="http://yadusharon.github.io"> Yadu</a>, was experimenting with interfacing the LCD to the <a href="http://fab.cba.mit.edu/content/projects/fabkit/"> FabDuino</a> he made (I too made a similar board, not FabDuino,
-          will talk about it later). He had some troubles prototyping the LCD interface; you can see the pictures in the next section and you will know what I'm talking about. In the beginning of the Pre-Fab Academy one of our trainer Mr. Luciano told
-          us that every one of us should do an individual project, later because of the shortage of time and equipments, he said that we can do group projects, thats when Yadu joined the project, actually he was helping before too, but now it's officially
-          OUR project. So he took over the micro-controller section, he started by interfacing the LCD and later he started working on the ADC interface and PWM control.
+          During this time my friend <a href="http://yadusharon.github.io"> Yadu</a>, was experimenting with interfacing the LCD to the <a href="http://fab.cba.mit.edu/content/projects/fabkit/"> FabDuino</a>          he made (I too made a similar board, not FabDuino, will talk about it later). He had some troubles prototyping the LCD interface; you can see
+          the pictures in the next section and you will know what I'm talking about. In the beginning of the Pre-Fab Academy one of our trainer Mr. Luciano
+          told us that every one of us should do an individual project, later because of the shortage of time and equipments, he said that we can do group
+          projects, thats when Yadu joined the project, actually he was helping before too, but now it's officially OUR project. So he took over the micro-controller
+          section, he started by interfacing the LCD and later he started working on the ADC interface and PWM control.
           <br> The FabLab or any lab, needs some basic stuff in their inventory, most importantly jumper wires, a lot of them, and all types(M-M, M-F, F-F).
           <br>Anyway it's time to merge our projects.
         </p>
@@ -296,23 +330,27 @@
         <h3>Stage 4: Putting the pieces together</h3>
 
         <p>
-          Lets give our project a display and a 'brain'. Yadu had the LCD interfaced with the FabDuino on a breadboard. We connected the amplifier section to the micr-controller and tried to read the temperature. We got the ADC values displaying, that was easier
-          done than said. But converting the ADC values to the temperature was not easy. We had to calibrate, for that we needed some source of known temperature or a thermometer. We had none. So I came up with this crazy setup to get at-least one calibration
-          point, the boiling point of water.
+          Lets give our project a display and a 'brain'. Yadu had the LCD interfaced with the FabDuino on a breadboard. We connected the amplifier section to the
+          micr-controller and tried to read the temperature. We got the ADC values displaying, that was easier done than said. But converting the ADC values
+          to the temperature was not easy. We had to calibrate, for that we needed some source of known temperature or a thermometer. We had none. So I
+          came up with this crazy setup to get at-least one calibration point, the boiling point of water.
           <figure>
             <img src="images/calib-1.JPG" alt="pencil in water" width='500' onmouseover="this.width='1100'" onmouseout="this.width='500'">
             <figcaption style="display:inline; color:grey">The pencil in hot water; the pencil is also being powered to maintain keep the water boiling, this should keep the tip temperature constant.</figcaption>
           </figure>
-          The heater will be kept powered, and the tip will be kept immersed in water. This will result in a maximum tip temperature of about 100&#8451;, the boiling point of water. The water will never allow the tip temperature to rise above 100 boiling point,
-          till then all the heat will be used to rise the temperature of the water and the tip itself. But once water starts boiling all the energy will be absorbed by the water to boil, no heat will be used to rise the temperature until all the water
-          is boiled off.
+          The heater will be kept powered, and the tip will be kept immersed in water. This will result in a maximum tip temperature of about 100&#8451;, the boiling
+          point of water. The water will never allow the tip temperature to rise above 100 boiling point, till then all the heat will be used to rise the
+          temperature of the water and the tip itself. But once water starts boiling all the energy will be absorbed by the water to boil, no heat will
+          be used to rise the temperature until all the water is boiled off.
 
         </p>
         <p>
           Okay, nice, but how do we use this for calibration ?
-          <br> Well, we have the tip at a constant and 'known' temperature, let us assume that this is 100&#8451;. Now we get the corresponding ADC reading through the display, so we know that this ADC readout corresponds to 100&#8451;, to be precise (100-room
-          temperature), because as we discussed before, the thermocouple measures relative temperature. There should be some way to get the room temperature, a thermometer, but what if you don't have one?. I used my smartphones's temperature sensor after
-          keeping the phone in sleep for some time to let it cool down to almost the room temperature.
+          <br> Well, we have the tip at a constant and 'known' temperature, let us assume that this is 100&#8451;. Now we get the corresponding ADC reading
+          through the display, so we know that this ADC readout corresponds to 100&#8451;, to be precise (100-room temperature), because as we discussed
+          before, the thermocouple measures relative temperature. There should be some way to get the room temperature, a thermometer, but what if you
+          don't have one?. I used my smartphones's temperature sensor after keeping the phone in sleep for some time to let it cool down to almost the
+          room temperature.
         </p>
         <p>
           So, once we have the ADC reading and the room temperature, we can calculate the conversion factor for converting the ADC value to the temperature.
@@ -320,8 +358,9 @@
           <br> then
           <br> tip.temperature = ADC.value * conversion.factor + offset
           <br> where offset is the room temperature
-          <br> I accept, this is a very bad calibration and assumes linear relationship between temperature difference across the thermocouple junction and the potential difference it produces. But we didn't have any choice. We have to add the NTC and start
-          using it ASAP, but I fear even this may need a calibration.
+          <br> I accept, this is a very bad calibration and assumes linear relationship between temperature difference across the thermocouple junction and
+          the potential difference it produces. But we didn't have any choice. We have to add the NTC and start using it ASAP, but I fear even this may
+          need a calibration.
           <br> Anyway this method will give an approximate tip temperature reading.
         </p>
 
@@ -377,7 +416,8 @@
           </code>
         </pre>
         <p>
-          We used the 16X2 character LCD (<a href="http://www.lumex.com/content/files/ProductAttachment/LCM-S01602DTR-M.pdf">LCM-S01602DTR/M</a>). For the LCD interface the connections are..
+          We used the 16X2 character LCD (<a href="http://www.lumex.com/content/files/ProductAttachment/LCM-S01602DTR-M.pdf">LCM-S01602DTR/M</a>). For
+          the LCD interface the connections are..
           <pre>
             * LCD RS pin to digital pin 7
             * LCD Enable pin to digital pin 6
@@ -393,20 +433,23 @@
         </p>
         <h3>Stage 4: Get control </h3>
         <p>
-          We are going to use the present tip temperature to control the tip temperature (what? well, thats how it is.) by controlling the power flow. This is done by switching the MOSFET on and off to control the duty cycle and thus the average energy flow (power).
-          The duty cycle control is achieved using PWM (Pulse Width Modulation).
+          We are going to use the present tip temperature to control the tip temperature (what? well, thats how it is.) by controlling the power flow. This is done
+          by switching the MOSFET on and off to control the duty cycle and thus the average energy flow (power). The duty cycle control is achieved using
+          PWM (Pulse Width Modulation).
         </p>
         <p>
-          At first, we will be using a simple control, we set a temperature (at first in the program itself, not through the interface), then we switch on the heater if the set temperature (S.T) is greater than present temperature (P.T). And we switch of the heater
-          if P.T &gt; S.T. This method is not very safe as the tip temperature tends to oscillate around or below the S.T. This is because of the delay between the heater control signal and the actual temperature change. We control the heater by switching
-          on and off, the MOSFET, depending on the P.T. When we switch on the heater element gets the full power and heats up very fast, depending on the placement of the actual temperature sensor we can only read this new temperature after a delay, this
-          causes the temperature to overshoot slightly. This in-turn may produce an oscillating behavior. One fix would be to reduce the power to the heater at any given instant. Thus reducing the overshoot. The power-flow can be controlled by adjusting
-          the PWM duty cycle.
+          At first, we will be using a simple control, we set a temperature (at first in the program itself, not through the interface), then we switch on the heater
+          if the set temperature (S.T) is greater than present temperature (P.T). And we switch of the heater if P.T &gt; S.T. This method is not very
+          safe as the tip temperature tends to oscillate around or below the S.T. This is because of the delay between the heater control signal and the
+          actual temperature change. We control the heater by switching on and off, the MOSFET, depending on the P.T. When we switch on the heater element
+          gets the full power and heats up very fast, depending on the placement of the actual temperature sensor we can only read this new temperature
+          after a delay, this causes the temperature to overshoot slightly. This in-turn may produce an oscillating behavior. One fix would be to reduce
+          the power to the heater at any given instant. Thus reducing the overshoot. The power-flow can be controlled by adjusting the PWM duty cycle.
         </p>
         <p>
-          During this time we actually made a three button control board to use in future, to set the temperature and control other functions.
-          We plan to use the top and bottom buttons for temperature up/down and the middle button for menu election. On pressing any of the button
-          corresponding interrupt codes will be executed to make changes accordingly.
+          During this time we actually made a three button control board to use in future, to set the temperature and control other functions. We plan to use the
+          top and bottom buttons for temperature up/down and the middle button for menu election. On pressing any of the button corresponding interrupt
+          codes will be executed to make changes accordingly.
           <br>
           <figure>
             <img src="images/control-1.JPG" alt="control board" width='300' onmouseover="width='500'" onmouseout="this.width='300'">
